@@ -24,7 +24,7 @@ const fadeVariant = {
 
 export default function Hero() {
   return (
-    <section className="relative z-10 flex min-h-0 flex-col justify-center px-[5vw] pt-36 pb-24 sm:pt-44 sm:pb-28 lg:min-h-[85vh] lg:pt-0 lg:pb-0">
+    <section className="relative z-10 flex min-h-0 flex-col justify-center px-[5vw] pt-36 pb-24 sm:pt-44 sm:pb-28 lg:min-h-[85vh] lg:pt-24 lg:pb-0">
       <motion.div
         initial="hidden"
         animate="visible"

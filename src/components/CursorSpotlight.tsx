@@ -28,7 +28,7 @@ export default function CursorSpotlight() {
       className="pointer-events-none fixed top-0 left-0 z-[5] h-[520px] w-[520px] rounded-full will-change-transform"
       style={{
         background:
-          "radial-gradient(circle, oklch(0.94 0.03 258 / 0.9) 0%, oklch(0.94 0.03 258 / 0) 70%)",
+          "radial-gradient(circle, oklch(0.94 0.03 76 / 0.9) 0%, oklch(0.94 0.03 76 / 0) 70%)",
         transform: "translate(-260px, -260px)",
         transition: "opacity .3s",
       }}

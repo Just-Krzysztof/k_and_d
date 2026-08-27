@@ -7,9 +7,9 @@
   --color-bg: #faf9f5;
   --color-ink: oklch(0.2 0.01 60);
   --color-dark: oklch(0.2 0.01 60);
-  --color-accent: oklch(0.47 0.15 258);
-  --color-accent-light: oklch(0.75 0.1 258);
-  --color-tint: oklch(0.97 0.015 258);
+  --color-accent: #da9612;
+  --color-accent-light: oklch(0.82 0.1 76);
+  --color-tint: oklch(0.97 0.006 76);
 }
 
 @layer base {
@@ -31,8 +31,8 @@
 }
 
 ::selection {
-  background: oklch(0.47 0.15 258);
-  color: #fff;
+  background: #da9612;
+  color: #20262d;
 }
 
 @keyframes marquee {
