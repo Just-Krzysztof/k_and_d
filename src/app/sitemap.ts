@@ -1,14 +1,11 @@
 import type { MetadataRoute } from "next";
-
-const SITE_URL = "https://brewstudio.pl";
+import { SITE_URL } from "@/lib/site";
+import { services } from "@/lib/services";
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  // Omit lastModified until content has a maintained publication/update date.
   return [
-    {
-      url: SITE_URL,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 1,
-    },
+    { url: SITE_URL },
+    ...services.map(({ slug }) => ({ url: `${SITE_URL}/uslugi/${slug}` })),
   ];
 }

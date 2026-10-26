@@ -27,9 +27,9 @@ export default function Wyroznia() {
               <div className="mb-5 font-mono text-[13px] text-accent">
                 {p.n}
               </div>
-              <h4 className="m-0 mb-3.5 text-2xl font-bold tracking-[-0.01em]">
+              <h3 className="m-0 mb-3.5 text-2xl font-bold tracking-[-0.01em]">
                 {p.title}
-              </h4>
+              </h3>
               <p className="m-0 max-w-[420px] text-[16px] leading-[1.65] text-ink/60">
                 {p.body}
               </p>

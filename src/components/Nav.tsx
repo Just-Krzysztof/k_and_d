@@ -1,21 +1,27 @@
+import Link from "next/link";
 import { navLinks } from "@/lib/content";
 import MagneticButton from "./MagneticButton";
 import LogoMark from "./LogoMark";
+import MobileNav from "./MobileNav";
 
 export default function Nav() {
   return (
     <nav className="fixed top-0 right-0 left-0 z-[100] flex items-center justify-between border-b border-ink/6 bg-bg/72 px-[5vw] py-[22px] backdrop-blur-[10px]">
-      <div className="flex items-center gap-2.5">
+      <Link
+        href="/"
+        aria-label="brewStudio - strona główna"
+        className="flex items-center gap-2.5"
+      >
         <LogoMark className="h-6.5 w-6.5 shrink-0" />
         <div className="text-[18px] font-extrabold tracking-[-0.02em]">
           brew<span className="text-accent">Studio</span>
         </div>
-      </div>
+      </Link>
       <div className="hidden items-center gap-7 text-[13px] font-medium text-ink/60 md:flex">
         {navLinks.map((link) => (
           <a
             key={link.href}
-            href={link.href}
+            href={`/${link.href}`}
             className="transition-colors duration-200 hover:text-ink"
           >
             {link.label}
@@ -23,11 +29,12 @@ export default function Nav() {
         ))}
       </div>
       <MagneticButton
-        href="#kontakt"
-        className="inline-block rounded-full bg-ink px-5 py-2.5 text-[13px] font-bold text-bg will-change-transform"
+        href="/#kontakt"
+        className="hidden rounded-full bg-ink px-5 py-2.5 text-[13px] font-bold text-bg will-change-transform md:inline-block"
       >
         Porozmawiajmy
       </MagneticButton>
+      <MobileNav />
     </nav>
   );
 }

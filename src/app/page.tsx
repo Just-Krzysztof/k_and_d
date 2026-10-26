@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import ScrollProgress from "@/components/ScrollProgress";
 import CursorSpotlight from "@/components/CursorSpotlight";
 import Nav from "@/components/Nav";
@@ -14,23 +15,29 @@ import Onas from "@/components/Onas";
 import Kontakt from "@/components/Kontakt";
 import Footer from "@/components/Footer";
 
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
+
 export default function Home() {
   return (
     <div className="relative w-full overflow-hidden bg-bg text-ink">
       <ScrollProgress />
       <CursorSpotlight />
       <Nav />
-      <Hero />
-      <Marquee />
-      <KimJestesmy />
-      <Filozofia />
-      <Wyroznia />
-      <Capabilities />
-      <Approach />
-      <Work />
-      <Quote />
-      <Onas />
-      <Kontakt />
+      <main id="main-content">
+        <Hero />
+        <Marquee />
+        <KimJestesmy />
+        <Filozofia />
+        <Wyroznia />
+        <Capabilities />
+        <Approach />
+        <Work />
+        <Quote />
+        <Onas />
+        <Kontakt />
+      </main>
       <Footer />
     </div>
   );

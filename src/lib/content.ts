@@ -1,7 +1,7 @@
 export const navLinks = [
   { href: "#filozofia", label: "Filozofia" },
   { href: "#wyroznia", label: "Wyróżnia nas" },
-  { href: "#capabilities", label: "Obszary" },
+  { href: "#capabilities", label: "Usługi" },
   { href: "#approach", label: "Proces" },
   { href: "#work", label: "Praca" },
   { href: "#onas", label: "Zespół" },
@@ -31,12 +31,12 @@ export const pillars = [
 ];
 
 export const capabilities = [
-  "Digital Products",
-  "Web Applications",
-  "SaaS Platforms",
-  "AI Solutions",
-  "Business Automation",
-  "Technology Consulting",
+  { title: "Aplikacje webowe", description: "Portale klientów, systemy wewnętrzne i narzędzia B2B dopasowane do sposobu działania firmy.", href: "/uslugi/aplikacje-webowe" },
+  { title: "Platformy SaaS", description: "Od pierwszej wersji produktu po rozwój usługi dostępnej dla wielu klientów przez przeglądarkę.", href: "/uslugi/platformy-saas" },
+  { title: "Automatyzacja procesów", description: "Integracje systemów, obieg danych i raportowanie ograniczające powtarzalną pracę zespołu.", href: "/uslugi/automatyzacja-procesow" },
+  { title: "Produkty cyfrowe", description: "Analiza potrzeb, projektowanie doświadczenia użytkownika i budowa rozwiązań odpowiadających na konkretny problem biznesowy." },
+  { title: "Rozwiązania AI", description: "Wsparcie analizy i porządkowania informacji z wykorzystaniem AI tam, gdzie można zweryfikować jakość wyników." },
+  { title: "Doradztwo technologiczne", description: "Dobór technologii, ocena istniejących systemów i planowanie kolejnych etapów rozwoju produktu." },
 ];
 
 export const steps = [

@@ -74,3 +74,24 @@
 .animate-spin-slow {
   animation: spin-slow 14s linear infinite;
 }
+
+.skip-link {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 300;
+  transform: translateY(-200%);
+  border-radius: 8px;
+  padding: 12px 20px;
+  background: var(--color-ink);
+  color: var(--color-bg);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .animate-marquee, .animate-pulse-dot, .animate-spin-slow { animation: none; }
+}

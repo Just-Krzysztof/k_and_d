@@ -43,9 +43,9 @@ export default function Work() {
               <div className="font-mono text-[11px] tracking-[0.08em] text-accent">
                 {w.tag}
               </div>
-              <h4 className="m-0 text-[21px] leading-[1.25] font-bold tracking-[-0.01em]">
+              <h3 className="m-0 text-[21px] leading-[1.25] font-bold tracking-[-0.01em]">
                 {w.title}
-              </h4>
+              </h3>
               <div className="mt-auto flex flex-col gap-2.5 border-t border-ink/10 pt-4">
                 <p className="m-0 text-[13.5px] leading-[1.6] text-ink/55">
                   <b className="text-ink/80">Problem:</b> {w.problem}

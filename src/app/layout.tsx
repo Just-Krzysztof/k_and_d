@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Archivo, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+import { SITE_URL, SITE_NAME, SITE_DESCRIPTION, HOME_TITLE } from "@/lib/site";
 
 const archivo = Archivo({
   variable: "--font-archivo",
@@ -14,26 +15,18 @@ const jetbrainsMono = JetBrains_Mono({
   weight: ["400", "500"],
 });
 
-const SITE_URL = "https://brewstudio.pl";
-const SITE_NAME = "brewStudio";
-const DESCRIPTION =
-  "brewStudio tworzy produkty cyfrowe, aplikacje webowe oraz rozwiązania technologiczne pomagające firmom rozwijać biznes i rozwiązywać realne problemy.";
-
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: `${SITE_NAME} | Digital Product Studio`,
+    default: HOME_TITLE,
     template: `%s | ${SITE_NAME}`,
   },
-  description: DESCRIPTION,
+  description: SITE_DESCRIPTION,
   authors: [{ name: SITE_NAME }],
   creator: SITE_NAME,
-  alternates: {
-    canonical: "/",
-  },
   openGraph: {
-    title: `${SITE_NAME} | Digital Product Studio`,
-    description: DESCRIPTION,
+    title: HOME_TITLE,
+    description: SITE_DESCRIPTION,
     url: SITE_URL,
     siteName: SITE_NAME,
     locale: "pl_PL",
@@ -41,18 +34,20 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: `${SITE_NAME} | Digital Product Studio`,
-    description: DESCRIPTION,
+    title: HOME_TITLE,
+    description: SITE_DESCRIPTION,
   },
 };
 
 const organizationJsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
+  "@id": `${SITE_URL}/#organization`,
   name: SITE_NAME,
   url: SITE_URL,
-  description:
-    "Digital Product Studio building web applications and technology solutions.",
+  logo: `${SITE_URL}/brand/logo-lockup.png`,
+  email: "hello@brewstudio.pl",
+  description: SITE_DESCRIPTION,
 };
 
 export default function RootLayout({
@@ -63,10 +58,11 @@ export default function RootLayout({
   return (
     <html lang="pl" className={`${archivo.variable} ${jetbrainsMono.variable}`}>
       <body className="bg-bg text-ink font-sans antialiased">
+        <a href="#main-content" className="skip-link">Przejdź do treści</a>
         {children}
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd).replace(/</g, "\\u003c") }}
         />
       </body>
     </html>

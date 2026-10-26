@@ -43,11 +43,11 @@ export default function Filozofia() {
         </Reveal>
 
         <Reveal className="border-t border-bg/15 pt-8 sm:pt-[60px]">
-          <h3 className="m-0 text-[clamp(32px,5.6vw,88px)] leading-[1.02] font-extrabold tracking-[-0.03em]">
+          <h2 className="m-0 text-[clamp(32px,5.6vw,88px)] leading-[1.02] font-extrabold tracking-[-0.03em]">
             Nie robimy produktów na szybko.
             <br />
             <span className="text-accent-light">Warzymy je z namysłem.</span>
-          </h3>
+          </h2>
         </Reveal>
       </div>
     </section>

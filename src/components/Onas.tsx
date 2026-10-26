@@ -12,18 +12,24 @@ export default function Onas() {
             07 · O NAS
           </div>
           <h2 className="m-0 text-[clamp(28px,3.4vw,48px)] leading-[1.08] font-extrabold tracking-[-0.02em]">
-            Dwie osoby. Jedno podejście do produktu.
+            Jeden zespół. Wspólna wizja. Produkty, które mają znaczenie.
           </h2>
         </Reveal>
         <Reveal className="pt-2">
           <p className="m-0 mb-6 text-[19px] leading-[1.7] text-ink/70">
-            Za brewStudio stoją ludzie, którzy od lat budują produkty
-            cyfrowe: od pierwszej idei, przez projektowanie, aż po
-            działające rozwiązanie.
+            Za brewStudio stoi zespół specjalistów, których łączy doświadczenie
+            w projektowaniu i tworzeniu produktów cyfrowych - od pierwszego
+            pomysłu, przez strategię i development, aż po wdrożenie gotowego
+            rozwiązania.
+          </p>
+          <p className="m-0 mb-6 text-[19px] leading-[1.7] text-ink/70">
+            Nie jesteśmy tylko wykonawcami kodu. Jesteśmy partnerem
+            technologicznym, który rozumie cele biznesowe i przekłada je na
+            skuteczne rozwiązania.
           </p>
           <p className="m-0 text-[19px] leading-[1.7] text-ink/70">
-            Nie interesuje nas wyłącznie dostarczenie kodu. Interesuje nas
-            stworzenie rozwiązania, które będzie rozwijało biznes klienta.
+            Tworzymy produkty, które nie tylko działają, ale realnie wspierają
+            rozwój biznesu naszych klientów.
           </p>
         </Reveal>
       </div>

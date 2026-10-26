@@ -31,9 +31,9 @@ export default function Approach() {
                 {s.n}
               </div>
               <div className="flex flex-col gap-2">
-                <h4 className="m-0 text-2xl font-bold tracking-[-0.01em] md:text-[26px]">
+                <h3 className="m-0 text-2xl font-bold tracking-[-0.01em] md:text-[26px]">
                   {s.title}
-                </h4>
+                </h3>
                 <p className="m-0 text-[15px] leading-[1.6] text-ink/60">
                   {s.body}
                 </p>
