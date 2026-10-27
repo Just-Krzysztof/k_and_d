@@ -1,7 +1,9 @@
-import { steps } from "@/lib/content";
+import { t, type LocaleProps } from "@/lib/i18n";
+import { getContent } from "@/lib/content";
 import Reveal from "./Reveal";
 
-export default function Approach() {
+export default function Approach({ locale }: LocaleProps) {
+  const { steps } = getContent(locale);
   return (
     <section
       id="approach"
@@ -10,10 +12,10 @@ export default function Approach() {
       <div className="mx-auto max-w-[1300px]">
         <Reveal className="mb-10 sm:mb-20">
           <div className="mb-[18px] font-mono text-[12px] tracking-[0.1em] text-accent">
-            05 · JAK PRACUJEMY
+            {t(locale, "05 · HOW WE WORK")}
           </div>
           <h2 className="m-0 max-w-[700px] text-[clamp(28px,3.4vw,48px)] font-extrabold tracking-[-0.02em]">
-            Każdy projekt przechodzi przez podobny proces.
+            {t(locale, "Every project follows a considered process.")}
           </h2>
         </Reveal>
 

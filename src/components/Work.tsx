@@ -1,7 +1,9 @@
-import { workItems } from "@/lib/content";
+import { t, type LocaleProps } from "@/lib/i18n";
+import { getContent } from "@/lib/content";
 import Reveal from "./Reveal";
 
-export default function Work() {
+export default function Work({ locale }: LocaleProps) {
+  const { workItems } = getContent(locale);
   return (
     <section
       id="work"
@@ -10,15 +12,16 @@ export default function Work() {
       <div className="mx-auto max-w-[1300px]">
         <Reveal className="mb-8 max-w-[760px] sm:mb-[60px]">
           <div className="mb-[18px] font-mono text-[12px] tracking-[0.1em] text-accent">
-            06 · WYBRANE HISTORIE
+            {t(locale, "06 · SELECTED STORIES")}
           </div>
           <h2 className="m-0 mb-5 text-[clamp(28px,3.4vw,48px)] font-extrabold tracking-[-0.02em]">
-            Praca nie jest klasycznym portfolio.
+            {t(locale, "Our work goes beyond a traditional portfolio.")}
           </h2>
           <p className="m-0 text-[17px] leading-[1.7] text-ink/60">
-            Pokazujemy problem klienta, zaprojektowane rozwiązanie oraz efekt
-            biznesowy. Portfolio jest jedynie potwierdzeniem kompetencji, nie
-            głównym argumentem.
+            {t(
+              locale,
+              "We share the client's challenge, the solution we designed and the business outcome. Our portfolio supports our expertise; it is only part of the story.",
+            )}
           </p>
         </Reveal>
 
@@ -37,7 +40,7 @@ export default function Work() {
                 }}
               >
                 <span className="font-mono text-[11px] text-ink/40">
-                  case study visual
+                  {t(locale, "case study visual")}
                 </span>
               </div>
               <div className="font-mono text-[11px] tracking-[0.08em] text-accent">
@@ -51,7 +54,8 @@ export default function Work() {
                   <b className="text-ink/80">Problem:</b> {w.problem}
                 </p>
                 <p className="m-0 text-[13.5px] leading-[1.6] text-ink/55">
-                  <b className="text-ink/80">Efekt:</b> {w.effect}
+                  <b className="text-ink/80">{t(locale, "Outcome:")}</b>{" "}
+                  {w.effect}
                 </p>
               </div>
             </Reveal>

@@ -1,36 +1,35 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# brewStudio
 
-## Getting Started
+A bilingual digital product studio website built with Next.js App Router.
 
-First, run the development server:
+## Development
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The repository also includes a pnpm lockfile. To install its exact dependency versions, use `pnpm install --frozen-lockfile`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run lint
+npm test
+npm run build
+npm run start
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Production builds download the configured Google fonts and require network access.
 
-## Learn More
+## Languages and URLs
 
-To learn more about Next.js, take a look at the following resources:
+- `/en` and `/pl` are independent, statically rendered home pages.
+- Services use English route names in both languages: `/{locale}/services/web-applications`, `/{locale}/services/saas-platforms`, and `/{locale}/services/process-automation`.
+- Only `/` negotiates language from the highest-priority `Accept-Language` preference. Polish selects `/pl`; every other language, an absent preference, or a wildcard selects `/en`.
+- Explicit language URLs are never redirected based on browser preferences. The header language selector keeps the current service page when switching languages.
+- Existing `/uslugi/...` URLs permanently redirect to their corresponding Polish pages. Query parameters are preserved.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Component and function names, route segments and source copy are English. Polish translations are maintained in `src/lib/translations/pl.json`; `src/lib/i18n.ts` translates English source copy and shared content. Business contact details and the studio name are shared between languages.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Each page has a self-referencing canonical, reciprocal `en`/`pl` hreflang links, an English `x-default`, translated metadata and structured data. The sitemap includes all eight localized pages. Search engines choose which language version to display; an incoming request does not reliably expose the language of a search query.
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+For HTTP and generated SEO checks, start a production server on port 3011 and run `npm run test:integration`. Override the server URL with `SITE_TEST_URL` if needed.

@@ -1,9 +1,10 @@
-import { marqueeText } from "@/lib/content";
+import { getContent } from "@/lib/content";
+import type { LocaleProps } from "@/lib/i18n";
 
 const REPEATS = 4;
-const half = marqueeText.repeat(REPEATS);
 
-export default function Marquee() {
+export default function Marquee({ locale }: LocaleProps) {
+  const half = getContent(locale).marqueeText.repeat(REPEATS);
   return (
     <div className="relative z-10 overflow-hidden border-t border-ink/8 bg-bg py-[22px] whitespace-nowrap">
       <div className="inline-flex animate-marquee">

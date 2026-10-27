@@ -1,64 +1,43 @@
 import type { Metadata } from "next";
+import { t, isLocale, localizedPath } from "@/lib/i18n";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
-import Kontakt from "@/components/Kontakt";
-import { services } from "@/lib/services";
-import { SITE_NAME, SITE_URL } from "@/lib/site";
+import Contact from "@/components/Contact";
+import { getServices } from "@/lib/services";
+import { createPageMetadata, SITE_NAME, SITE_URL } from "@/lib/site";
 
-type Props = { params: Promise<{ slug: string }> };
+type Props = { params: Promise<{ locale: string; slug: string }> };
 
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return services.map(({ slug }) => ({ slug }));
+  return getServices("en").map(({ slug }) => ({ slug }));
 }
 
 async function getService(params: Props["params"]) {
-  const { slug } = await params;
+  const { locale, slug } = await params;
+  if (!isLocale(locale)) notFound();
+  const services = getServices(locale);
   const service = services.find((item) => item.slug === slug);
   if (!service) notFound();
-  return service;
+  return { service, services, locale };
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const service = await getService(params);
-  const path = `/uslugi/${service.slug}`;
-  const title = `${service.title} | ${SITE_NAME}`;
-
-  return {
-    title: service.title,
-    description: service.description,
-    alternates: { canonical: path },
-    openGraph: {
-      title,
-      description: service.description,
-      url: path,
-      siteName: SITE_NAME,
-      locale: "pl_PL",
-      type: "website",
-      images: [
-        {
-          url: "/opengraph-image",
-          width: 1200,
-          height: 630,
-          alt: "brewStudio - aplikacje webowe, SaaS i automatyzacja dla firm",
-        },
-      ],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title,
-      description: service.description,
-      images: ["/opengraph-image"],
-    },
-  };
+  const { service, locale } = await getService(params);
+  return createPageMetadata(
+    locale,
+    `/services/${service.slug}`,
+    service.title,
+    service.description,
+  );
 }
 
 export default async function ServicePage({ params }: Props) {
-  const service = await getService(params);
-  const url = `${SITE_URL}/uslugi/${service.slug}`;
+  const { service, services, locale } = await getService(params);
+  const url = `${SITE_URL}${localizedPath(locale, `/services/${service.slug}`)}`;
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
@@ -73,7 +52,12 @@ export default async function ServicePage({ params }: Props) {
       {
         "@type": "BreadcrumbList",
         itemListElement: [
-          { "@type": "ListItem", position: 1, name: SITE_NAME, item: SITE_URL },
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: SITE_NAME,
+            item: `${SITE_URL}/${locale}`,
+          },
           { "@type": "ListItem", position: 2, name: service.name, item: url },
         ],
       },
@@ -82,16 +66,19 @@ export default async function ServicePage({ params }: Props) {
 
   return (
     <>
-      <Nav />
+      <Nav locale={locale} />
       <main id="main-content" className="px-[5vw] pt-36 sm:pt-44">
         <article className="mx-auto max-w-[1100px]">
           <nav
-            aria-label="Ścieżka nawigacji"
+            aria-label={t(locale, "Breadcrumbs")}
             className="mb-10 text-sm text-ink/65"
           >
             <ol className="flex flex-wrap gap-2">
               <li>
-                <Link href="/" className="underline underline-offset-4">
+                <Link
+                  href={localizedPath(locale)}
+                  className="underline underline-offset-4"
+                >
                   brewStudio
                 </Link>
               </li>
@@ -103,7 +90,7 @@ export default async function ServicePage({ params }: Props) {
           </nav>
           <header className="max-w-[900px] pb-16 sm:pb-24">
             <p className="mb-5 font-mono text-xs tracking-[0.12em] text-accent">
-              PROJEKTUJEMY · BUDUJEMY · ROZWIJAMY
+              {t(locale, "DESIGN \u00b7 BUILD \u00b7 GROW")}
             </p>
             <h1 className="text-[clamp(36px,6vw,80px)] leading-[1.05] font-extrabold tracking-[-0.03em]">
               {service.title}
@@ -112,22 +99,24 @@ export default async function ServicePage({ params }: Props) {
               {service.intro}
             </p>
             <a
-              href="#kontakt"
+              href="#contact"
               className="mt-9 inline-block rounded-full bg-ink px-7 py-4 font-bold text-bg"
             >
-              Porozmawiajmy o Twoim projekcie
+              {t(locale, "Let's discuss your project")}
             </a>
           </header>
           <section className="border-t border-ink/12 py-12 sm:py-16">
             <h2 className="mb-6 text-3xl font-bold">
-              Kiedy warto wybrać to rozwiązanie?
+              {t(locale, "When is this the right solution?")}
             </h2>
             <p className="max-w-[760px] text-lg leading-relaxed text-ink/70">
               {service.audience}
             </p>
           </section>
           <section className="border-t border-ink/12 py-12 sm:py-16">
-            <h2 className="mb-9 text-3xl font-bold">Zakres współpracy</h2>
+            <h2 className="mb-9 text-3xl font-bold">
+              {t(locale, "How we can help")}
+            </h2>
             <div className="grid gap-8 md:grid-cols-3">
               {service.scope.map((item) => (
                 <div key={item.title}>
@@ -139,21 +128,21 @@ export default async function ServicePage({ params }: Props) {
           </section>
           <section className="border-t border-ink/12 py-12 sm:py-16">
             <h2 className="mb-6 text-3xl font-bold">
-              Od rozmowy do działającego rozwiązania
+              {t(locale, "From a conversation to a working solution")}
             </h2>
             <p className="max-w-[760px] text-lg leading-relaxed text-ink/70">
               {service.process}
             </p>
             <Link
-              href="/#approach"
+              href={localizedPath(locale, "#approach")}
               className="mt-6 inline-block font-semibold underline underline-offset-4"
             >
-              Poznaj nasz proces pracy
+              {t(locale, "Explore our process")}
             </Link>
           </section>
           <section className="border-t border-ink/12 py-12 sm:py-16">
             <h2 className="mb-9 text-3xl font-bold">
-              Pytania przed rozpoczęciem projektu
+              {t(locale, "Questions before getting started")}
             </h2>
             <div className="max-w-[760px] space-y-8">
               {service.questions.map((item) => (
@@ -166,11 +155,11 @@ export default async function ServicePage({ params }: Props) {
           </section>
         </article>
         <nav
-          aria-label="Pozostałe usługi"
+          aria-label={t(locale, "Other services")}
           className="mx-auto max-w-[1100px] border-t border-ink/12 py-12"
         >
           <h2 className="mb-6 text-2xl font-bold">
-            Pozostałe obszary współpracy
+            {t(locale, "Other ways we can help")}
           </h2>
           <ul className="flex flex-wrap gap-6">
             {services
@@ -178,7 +167,7 @@ export default async function ServicePage({ params }: Props) {
               .map((item) => (
                 <li key={item.slug}>
                   <Link
-                    href={`/uslugi/${item.slug}`}
+                    href={localizedPath(locale, `/services/${item.slug}`)}
                     className="font-semibold underline underline-offset-4"
                   >
                     {item.name} →
@@ -187,9 +176,9 @@ export default async function ServicePage({ params }: Props) {
               ))}
           </ul>
         </nav>
-        <Kontakt />
+        <Contact locale={locale} />
       </main>
-      <Footer />
+      <Footer locale={locale} />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
