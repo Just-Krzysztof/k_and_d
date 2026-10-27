@@ -1,87 +1,124 @@
-export const navLinks = [
-  { href: "#filozofia", label: "Filozofia" },
-  { href: "#wyroznia", label: "Wyróżnia nas" },
-  { href: "#capabilities", label: "Usługi" },
-  { href: "#approach", label: "Proces" },
-  { href: "#work", label: "Praca" },
-  { href: "#onas", label: "Zespół" },
+import { localize, type Locale } from "./i18n";
+
+const navLinks = [
+  { href: "#philosophy", label: "Philosophy" },
+  { href: "#principles", label: "Why us" },
+  { href: "#capabilities", label: "Services" },
+  { href: "#approach", label: "Process" },
+  { href: "#work", label: "Work" },
+  { href: "#team", label: "Team" },
 ];
 
-export const pillars = [
+const pillars = [
   {
     n: "01",
     title: "Product Thinking",
-    body: "Patrzymy na produkt całościowo. Nie kończymy na implementacji funkcji. Myślimy o użytkowniku, biznesie oraz możliwościach dalszego rozwoju.",
+    body: "We take a whole-product view. We go beyond implementing features to consider users, the business and opportunities for future development.",
   },
   {
     n: "02",
-    title: "Technologia wspierająca biznes",
-    body: "Nie proponujemy technologii dlatego, że jest modna. Dobieramy rozwiązania do problemu, który należy rozwiązać.",
+    title: "Technology that supports business",
+    body: "We don't recommend technology just because it is popular. We choose solutions to match the problem that needs solving.",
   },
   {
     n: "03",
-    title: "Partnerskie podejście",
-    body: "Nie jesteśmy tylko wykonawcą. Stajemy się partnerem w procesie tworzenia produktu.",
+    title: "A collaborative approach",
+    body: "We are more than a contractor. We become a partner in building your product.",
   },
   {
     n: "04",
-    title: "Indywidualne podejście",
-    body: "Nie korzystamy z gotowych schematów. Każdy projekt powstaje od podstaw, w oparciu o cele klienta.",
+    title: "A tailored approach",
+    body: "We don't rely on a fixed formula. Every project starts with the client's goals and is built around them.",
   },
 ];
 
-export const capabilities = [
-  { title: "Aplikacje webowe", description: "Portale klientów, systemy wewnętrzne i narzędzia B2B dopasowane do sposobu działania firmy.", href: "/uslugi/aplikacje-webowe" },
-  { title: "Platformy SaaS", description: "Od pierwszej wersji produktu po rozwój usługi dostępnej dla wielu klientów przez przeglądarkę.", href: "/uslugi/platformy-saas" },
-  { title: "Automatyzacja procesów", description: "Integracje systemów, obieg danych i raportowanie ograniczające powtarzalną pracę zespołu.", href: "/uslugi/automatyzacja-procesow" },
-  { title: "Produkty cyfrowe", description: "Analiza potrzeb, projektowanie doświadczenia użytkownika i budowa rozwiązań odpowiadających na konkretny problem biznesowy." },
-  { title: "Rozwiązania AI", description: "Wsparcie analizy i porządkowania informacji z wykorzystaniem AI tam, gdzie można zweryfikować jakość wyników." },
-  { title: "Doradztwo technologiczne", description: "Dobór technologii, ocena istniejących systemów i planowanie kolejnych etapów rozwoju produktu." },
+const capabilities = [
+  {
+    title: "Web applications",
+    description:
+      "Customer portals, internal systems and B2B tools tailored to the way your business works.",
+    href: "/services/web-applications",
+  },
+  {
+    title: "SaaS platforms",
+    description:
+      "From the first product version to a growing service that multiple customers can access in their browser.",
+    href: "/services/saas-platforms",
+  },
+  {
+    title: "Process automation",
+    description:
+      "System integrations, data flows and reporting that reduce repetitive work for your team.",
+    href: "/services/process-automation",
+  },
+  {
+    title: "Digital products",
+    description:
+      "Needs analysis, user experience design and solutions built around a specific business challenge.",
+  },
+  {
+    title: "AI solutions",
+    description:
+      "AI-assisted analysis and information organisation where the quality of results can be verified.",
+  },
+  {
+    title: "Technology consulting",
+    description:
+      "Technology selection, existing system reviews and planning the next stages of product development.",
+  },
 ];
 
-export const steps = [
+const steps = [
   {
     n: "01",
-    title: "Odkrywanie",
-    body: "Poznajemy biznes i znajdujemy właściwe składniki problemu.",
+    title: "Discovery",
+    body: "We get to know the business and find the key ingredients of the problem.",
   },
   {
     n: "02",
-    title: "Projektowanie",
-    body: "Tworzymy właściwą recepturę: plan i doświadczenie użytkownika.",
+    title: "Design",
+    body: "We develop the right recipe: a plan and a user experience.",
   },
   {
     n: "03",
-    title: "Budowa",
-    body: "Warzymy produkt, od implementacji po pierwsze wdrożenie.",
+    title: "Build",
+    body: "We brew the product, from implementation to its first launch.",
   },
   {
     n: "04",
-    title: "Rozwój",
-    body: "Doskonalimy i rozwijamy produkt po uruchomieniu.",
+    title: "Growth",
+    body: "We improve and develop the product after launch.",
   },
 ];
 
-export const workItems = [
+const workItems = [
   {
     tag: "SaaS · FINTECH",
-    title: "Platforma do zarządzania płatnościami",
-    problem: "Ręczne procesy rozliczeniowe spowalniały skalowanie zespołu.",
-    effect: "Automatyzacja skróciła czas obsługi o połowę.",
+    title: "Payment management platform",
+    problem: "Manual settlement processes were slowing the team's growth.",
+    effect: "Automation cut processing time in half.",
   },
   {
     tag: "HEALTHTECH",
-    title: "Aplikacja do zarządzania wizytami",
-    problem: "Rozproszone narzędzia utrudniały pracę recepcji i lekarzy.",
-    effect: "Jeden spójny system dla całej kliniki.",
+    title: "Appointment management application",
+    problem:
+      "Disconnected tools made work harder for reception staff and doctors.",
+    effect: "One integrated system for the entire clinic.",
   },
   {
     tag: "AI · B2B",
-    title: "Wewnętrzne narzędzie oparte na AI",
-    problem: "Zespół tracił godziny na powtarzalną, ręczną analizę danych.",
-    effect: "Automatyczne raporty dostępne w czasie rzeczywistym.",
+    title: "An internal AI-powered tool",
+    problem: "The team was spending hours on repetitive manual data analysis.",
+    effect: "Automated reports available in real time.",
   },
 ];
 
-export const marqueeText =
-  "PRODUCT THINKING  ·  TECHNOLOGY PARTNER  ·  PARTNERSKIE PODEJŚCIE  ·  INDYWIDUALNE ROZWIĄZANIA  ·  ";
+const marqueeText =
+  "PRODUCT THINKING  ·  TECHNOLOGY PARTNER  ·  COLLABORATIVE APPROACH  ·  TAILORED SOLUTIONS  ·  ";
+
+export function getContent(locale: Locale) {
+  return localize(
+    { navLinks, pillars, capabilities, steps, workItems, marqueeText },
+    locale,
+  );
+}

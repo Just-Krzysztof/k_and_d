@@ -1,19 +1,21 @@
-import { pillars } from "@/lib/content";
+import { t, type LocaleProps } from "@/lib/i18n";
+import { getContent } from "@/lib/content";
 import Reveal from "./Reveal";
 
-export default function Wyroznia() {
+export default function Principles({ locale }: LocaleProps) {
+  const { pillars } = getContent(locale);
   return (
     <section
-      id="wyroznia"
+      id="principles"
       className="relative z-10 px-[5vw] py-16 sm:py-24 lg:py-[160px]"
     >
       <div className="mx-auto max-w-[1300px]">
         <Reveal className="mb-10 sm:mb-[70px]">
           <div className="mb-[18px] font-mono text-[12px] tracking-[0.1em] text-accent">
-            03 · CO NAS WYRÓŻNIA
+            {t(locale, "03 · WHAT SETS US APART")}
           </div>
           <h2 className="m-0 max-w-[700px] text-[clamp(28px,3.4vw,48px)] font-extrabold tracking-[-0.02em]">
-            Cztery zasady, które prowadzą każdy projekt.
+            {t(locale, "Four principles behind every project.")}
           </h2>
         </Reveal>
 
